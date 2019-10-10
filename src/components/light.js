@@ -19,10 +19,28 @@ const Light = () => {
     
     useEffect(() => {
         if (system === 2) setTimeout(() => {setTime(time + 1);},1000) ;
-        if (time === 0 && system === 2) { setRed('red mx-auto'); setYellow('yellowOff mx-auto'); setGreen('greenOff mx-auto'); setWalking(walkLight); setTextWalking('WALK'); }
-        if (time === 3 && system === 2) { setRed('redOff mx-auto'); setYellow('yellowOff mx-auto'); setGreen('green mx-auto'); setWalking(stopLight); setTextWalking('STOP'); }
-        if (time === 6 && system === 2) { setRed('redOff mx-auto'); setYellow('yellow mx-auto'); setGreen('greenOff mx-auto'); setWalking(stopLight); setTextWalking('STOP'); }
-        if (time === 9 && system === 2) setTime(0);
+        if (time === 0 && system === 2) {
+            setRed('red mx-auto');
+            setYellow('yellowOff mx-auto');
+            setGreen('greenOff mx-auto');
+            setWalking(walkLight);
+            setTextWalking('WALK');
+        }
+        if (time === 3 && system === 2) {
+            setRed('redOff mx-auto');
+            setYellow('yellowOff mx-auto');
+            setGreen('green mx-auto');
+            setWalking(stopLight);
+            setTextWalking('STOP');
+        }
+        if (time === 6 && system === 2) {
+            setRed('redOff mx-auto');
+            setYellow('yellow mx-auto');
+            setGreen('greenOff mx-auto');
+            setWalking(stopLight);
+            setTextWalking('STOP');
+        }
+        if (time === 7 && system === 2) setTime(0);
     }, [time, system]);
     const systemLight = (e) => {
         let sys = e.target.id;
@@ -32,9 +50,27 @@ const Light = () => {
     };
     const clickLight = (e) => {
         let clicked = e.target.id;
-        if (clicked === 'red' && system === 1) {setRed('red mx-auto notAllowed'); setYellow('yellowOff mx-auto pointer'); setGreen('greenOff mx-auto pointer'); setWalking(walkLight); setTextWalking(`WALK`); };
-        if (clicked === 'yellow' && system === 1) {setRed('redOff mx-auto pointer'); setYellow('yellow mx-auto notAllowed'); setGreen('greenOff mx-auto pointer'); setWalking(stopLight); setTextWalking('STOP'); };
-        if (clicked === 'green' && system === 1) {setRed('redOff mx-auto pointer'); setYellow('yellowOff mx-auto pointer'); setGreen('green mx-auto notAllowed'); setWalking(stopLight); setTextWalking('STOP'); };
+        if (clicked === 'red' && system === 1) {
+            setRed('red mx-auto notAllowed');
+            setYellow('yellowOff mx-auto pointer');
+            setGreen('greenOff mx-auto pointer');
+            setWalking(walkLight);
+            setTextWalking(`WALK`);
+        };
+        if (clicked === 'yellow' && system === 1) {
+            setRed('redOff mx-auto pointer');
+            setYellow('yellow mx-auto notAllowed');
+            setGreen('greenOff mx-auto pointer');
+            setWalking(stopLight);
+            setTextWalking('STOP');
+        };
+        if (clicked === 'green' && system === 1) {
+            setRed('redOff mx-auto pointer');
+            setYellow('yellowOff mx-auto pointer');
+            setGreen('green mx-auto notAllowed');
+            setWalking(stopLight);
+            setTextWalking('STOP');
+        };
     };
     const on = () => {
         setSystem(1);
