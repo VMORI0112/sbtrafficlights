@@ -89,6 +89,8 @@ body {
   background-size: 8px 8px;
   border: 2px solid black;
 }
+.pointer {cursor: pointer;}
+.notAllowed {cursor: not-allowed;}
 
 .red {
   width: 100px;

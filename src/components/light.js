@@ -12,11 +12,10 @@ const Light = () => {
     const [yellow, setYellow] = useState('yellowOff mx-auto');
     const [green, setGreen] = useState('greenOff mx-auto');
     const [btnON, setBtnON] = useState('system mx-auto text-center');
-    const [btnOFF, setBtnOFF] = useState('system mx-auto text-center');
+    const [btnOFF, setBtnOFF] = useState('systemOn mx-auto text-center');
     const [btnAUTO, setBtnAUTO] = useState('system mx-auto text-center');
     const [walking, setWalking] = useState(offWalking);
     const [textWalking, setTextWalking] = useState('STOP');
-    
     
     useEffect(() => {
         if (system === 2) setTimeout(() => {setTime(time + 1);},1000) ;
@@ -24,32 +23,30 @@ const Light = () => {
         if (time === 3 && system === 2) { setRed('redOff mx-auto'); setYellow('yellowOff mx-auto'); setGreen('green mx-auto'); setWalking(stopLight); setTextWalking('STOP'); }
         if (time === 6 && system === 2) { setRed('redOff mx-auto'); setYellow('yellow mx-auto'); setGreen('greenOff mx-auto'); setWalking(stopLight); setTextWalking('STOP'); }
         if (time === 9 && system === 2) setTime(0);
-    }, [time, system])
-
+    }, [time, system]);
     const systemLight = (e) => {
         let sys = e.target.id;
         if (sys === 'on') on();
         if (sys === 'off') off();
-        if (sys === 'auto') {auto() };
-    }
-    
+        if (sys === 'auto') auto();
+    };
     const clickLight = (e) => {
         let clicked = e.target.id;
-        if (clicked === 'red' && system === 1) {setRed('red mx-auto'); setYellow('yellowOff mx-auto'); setGreen('greenOff mx-auto'); setWalking(walkLight); setTextWalking(`WALK`); };
-        if (clicked === 'yellow' && system === 1) {setRed('redOff mx-auto'); setYellow('yellow mx-auto'); setGreen('greenOff mx-auto'); setWalking(stopLight); setTextWalking('STOP'); };
-        if (clicked === 'green' && system === 1) {setRed('redOff mx-auto'); setYellow('yellowOff mx-auto'); setGreen('green mx-auto'); setWalking(stopLight); setTextWalking('STOP'); };
-        console.log(clicked);
-    } 
-
+        if (clicked === 'red' && system === 1) {setRed('red mx-auto notAllowed'); setYellow('yellowOff mx-auto pointer'); setGreen('greenOff mx-auto pointer'); setWalking(walkLight); setTextWalking(`WALK`); };
+        if (clicked === 'yellow' && system === 1) {setRed('redOff mx-auto pointer'); setYellow('yellow mx-auto notAllowed'); setGreen('greenOff mx-auto pointer'); setWalking(stopLight); setTextWalking('STOP'); };
+        if (clicked === 'green' && system === 1) {setRed('redOff mx-auto pointer'); setYellow('yellowOff mx-auto pointer'); setGreen('green mx-auto notAllowed'); setWalking(stopLight); setTextWalking('STOP'); };
+    };
     const on = () => {
         setSystem(1);
-        setRed('red mx-auto');
+        setRed('red mx-auto notAllowed');
+        setYellow('yellowOff mx-auto pointer');
+        setGreen('greenOff mx-auto pointer');
         setWalking(walkLight);
         setTextWalking('WALK');
         setBtnON('systemOn mx-auto text-center');
         setBtnOFF('system mx-auto text-center');
         setBtnAUTO('system mx-auto text-center')
-    }
+    };
     const off = () => {
         setSystem(0);
         setRed('redOff mx-auto');
@@ -59,13 +56,13 @@ const Light = () => {
         setBtnON('system mx-auto text-center');
         setBtnOFF('systemOn mx-auto text-center');
         setBtnAUTO('system mx-auto text-center');
-    }
+    };
     const auto = () => {
         setSystem(2);
         setBtnON('system mx-auto text-center');
         setBtnOFF('system mx-auto text-center');
         setBtnAUTO('systemOn mx-auto text-center'); 
-    }
+    };
 
     return (
         <>
