@@ -33,11 +33,11 @@ body {
 .walkLight {
   position: absolute;
   bottom: 10%;
-  background-color: #151515;
+  background-color: limegreen;
   border: 2px solid black;
   width: 150px;
   height: 120px;
-  color: green;
+  color: black;
   font-size: 40px;
   border-radius: 10px;
   font-weight: 800;
@@ -104,9 +104,9 @@ body {
   height: 100px;
   margin-top: 25px;
   border-radius: 100%;
-  background-color: yellow;
+  background-color: orange;
   border: 2px solid black;
-  box-shadow: 0 0 60px yellow;
+  box-shadow: 0 0 60px orange;
 }
 .green {
   width: 100px;

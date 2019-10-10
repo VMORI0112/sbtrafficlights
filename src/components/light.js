@@ -15,18 +15,14 @@ const Light = () => {
     const [btnOFF, setBtnOFF] = useState('system mx-auto text-center');
     const [btnAUTO, setBtnAUTO] = useState('system mx-auto text-center');
     const [walking, setWalking] = useState(offWalking);
-
-    let timer = () => {
-        setTimeout(() => {
-            setTime(time + 1);
-        },1000) 
-    }
+    const [textWalking, setTextWalking] = useState('STOP');
+    
     
     useEffect(() => {
-        if (system === 2) timer();
-        if (time === 0 && system === 2) { setRed('red mx-auto'); setYellow('yellowOff mx-auto'); setGreen('greenOff mx-auto'); setWalking(walkLight); }
-        if (time === 3 && system === 2) { setRed('redOff mx-auto'); setYellow('yellowOff mx-auto'); setGreen('green mx-auto'); setWalking(stopLight); }
-        if (time === 6 && system === 2) { setRed('redOff mx-auto'); setYellow('yellow mx-auto'); setGreen('greenOff mx-auto'); setWalking(stopLight); }
+        if (system === 2) setTimeout(() => {setTime(time + 1);},1000) ;
+        if (time === 0 && system === 2) { setRed('red mx-auto'); setYellow('yellowOff mx-auto'); setGreen('greenOff mx-auto'); setWalking(walkLight); setTextWalking('WALK'); }
+        if (time === 3 && system === 2) { setRed('redOff mx-auto'); setYellow('yellowOff mx-auto'); setGreen('green mx-auto'); setWalking(stopLight); setTextWalking('STOP'); }
+        if (time === 6 && system === 2) { setRed('redOff mx-auto'); setYellow('yellow mx-auto'); setGreen('greenOff mx-auto'); setWalking(stopLight); setTextWalking('STOP'); }
         if (time === 9 && system === 2) setTime(0);
     }, [time, system])
 
@@ -39,15 +35,17 @@ const Light = () => {
     
     const clickLight = (e) => {
         let clicked = e.target.id;
-        if (clicked === 'red' && system === 1) {setRed('red mx-auto'); setYellow('yellowOff mx-auto'); setGreen('greenOff mx-auto'); setWalking(walkLight) };
-        if (clicked === 'yellow' && system === 1) {setRed('redOff mx-auto'); setYellow('yellow mx-auto'); setGreen('greenOff mx-auto'); setWalking(walkLight) };
-        if (clicked === 'green' && system === 1) {setRed('redOff mx-auto'); setYellow('yellowOff mx-auto'); setGreen('green mx-auto'); setWalking(stopLight) };
+        if (clicked === 'red' && system === 1) {setRed('red mx-auto'); setYellow('yellowOff mx-auto'); setGreen('greenOff mx-auto'); setWalking(walkLight); setTextWalking(`WALK`); };
+        if (clicked === 'yellow' && system === 1) {setRed('redOff mx-auto'); setYellow('yellow mx-auto'); setGreen('greenOff mx-auto'); setWalking(stopLight); setTextWalking('STOP'); };
+        if (clicked === 'green' && system === 1) {setRed('redOff mx-auto'); setYellow('yellowOff mx-auto'); setGreen('green mx-auto'); setWalking(stopLight); setTextWalking('STOP'); };
         console.log(clicked);
     } 
 
     const on = () => {
         setSystem(1);
         setRed('red mx-auto');
+        setWalking(walkLight);
+        setTextWalking('WALK');
         setBtnON('systemOn mx-auto text-center');
         setBtnOFF('system mx-auto text-center');
         setBtnAUTO('system mx-auto text-center')
@@ -57,6 +55,7 @@ const Light = () => {
         setRed('redOff mx-auto');
         setYellow('yellowOff mx-auto');
         setGreen('greenOff mx-auto');
+        setWalking(offWalking);
         setBtnON('system mx-auto text-center');
         setBtnOFF('systemOn mx-auto text-center');
         setBtnAUTO('system mx-auto text-center');
@@ -80,7 +79,7 @@ const Light = () => {
             </div>
             <div className="d-flex justify-content-center">
                 <div className='stickLight'></div>
-                <div className={walking}>WALK</div>
+                <div className={walking}>{textWalking}</div>
             </div>
             <div className="autoBox">
                 <div id="on" onClick={systemLight} className={btnON}>ON</div>
